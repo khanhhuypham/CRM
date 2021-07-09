@@ -1,35 +1,45 @@
-package cybersoft.java12.crmapp.servlet;
-
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import cybersoft.java12.crmapp.dbconnection.MySqlConnection;
-import cybersoft.java12.crmapp.util.ServletUtil;
-import cybersoft.java12.crmapp.util.UrlUtils;
-
-@WebServlet(name = ServletUtil.MONITOR, urlPatterns = {
-		UrlUtils.HEALTH
-})
-public class MonitorServlet extends HttpServlet {
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = req.getServletPath();
-		
-		switch(path) {
-			case UrlUtils.HEALTH:{
-				if(MySqlConnection.getConnection() != null) {
-					resp.getWriter().append("Database conenction has been established successfully!");
-				}else {
-					resp.getWriter().append("Database conenction could not be established!");
-				}
-				break;
-			}
-		}
-	}
-}
+//package cybersoft.java12.crmapp.servlet;
+//
+//import java.io.IOException;
+//
+//import javax.servlet.ServletException;
+//import javax.servlet.annotation.WebServlet;
+//import javax.servlet.http.HttpServlet;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.http.HttpSession;
+//
+//import cybersoft.java12.crmapp.dbconnection.MySqlConnection;
+//import cybersoft.java12.crmapp.util.ServletUtils;
+//import cybersoft.java12.crmapp.util.UrlUtils;
+//
+//@WebServlet(name = ServletUtils.MONITOR, urlPatterns = {
+//		UrlUtils.HEALTH,
+//		UrlUtils.INVALIDATE
+//})
+//public class MonitorServlet extends HttpServlet {
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		String path = req.getServletPath();
+//		
+//		switch (path) {
+//		case UrlUtils.HEALTH:
+//			// session demo
+//			HttpSession currentSession = req.getSession();
+//			currentSession.setAttribute("pingo", "This is the first session attribute.");
+//			currentSession.setMaxInactiveInterval(60*60);
+//			
+//			if(MySqlConnection.getConnection() != null)
+//				resp.getWriter().append("Database connection has been established successfully.");
+//			else 
+//				resp.getWriter().append("Database connection could not be established.");
+//				
+//			break;
+//		case UrlUtils.INVALIDATE:
+//				req.getSession().invalidate();
+//			break;
+//		default:
+//			throw new IllegalArgumentException("Unexpected value: " + path);
+//		}
+//	}
+//}

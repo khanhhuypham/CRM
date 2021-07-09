@@ -13,6 +13,7 @@
     <title>
 		<dec:title />
 	</title>
+	<dec:head />
 </head>
 <body class="layout-fixed">
 	<div class = "preloader"></div>
@@ -20,13 +21,13 @@
 	<!--Header layout -->
 	<div class="mdk-header-layout js-mdk-header-layout">
 		<!-- Header -->
-		<jsp:include page = "/decorators/components/header.jsp"/>
+		<jsp:include page = "/decorators/components/header.jsp"></jsp:include>
 		<!-- // END Header -->
 		
 		<!-- Header Layout Content -->
 		<div class = "mdk-header-layout__content page">
-			<jsp:include page = "/decorators/components/navigation-bar.jsp"/>
-			<jsp:include page = "/decorators/components/main.jsp"/>	
+			<jsp:include page = "/decorators/components/navigation-bar.jsp"></jsp:include>
+			<jsp:include page = "/decorators/components/main.jsp"/>
 		</div>    	
     	<!-- // END Header Layout Content -->
     	

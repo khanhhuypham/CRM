@@ -12,7 +12,7 @@
             <div class="navbar-collapse collapse" id="navbarsExample03">
                 <ul class="nav navbar-nav flex">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<%=request.getContextPath() + UrlUtils.HOME_SERVLET%>">
+                        <a class="nav-link active" href="<%=request.getContextPath() + UrlUtils.HOME%>">
                             Home</a>
                     </li>
                     <li class="nav-item dropdown">

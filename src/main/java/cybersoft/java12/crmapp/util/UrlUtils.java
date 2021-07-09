@@ -1,18 +1,19 @@
 package cybersoft.java12.crmapp.util;
 
 public class UrlUtils {
-	public static final String HOME_SERVLET = "/home";
+	public static final String HOME = "/home";
 	public static final String ROOT 	= "/*";
 	public static final String ASSETS 	= "/assets";
 	
 	//Monitor
 	public static final String HEALTH = "/health";
+	public static final String INVALIDATE = "/invalidate-session";
 	
 	// Auth
-	public static final String LOGIN 	= "/login";
-	public static final String LOGOUT 	= "/logout";
-	public static final String SIGNUP 	= "/signup";
-	public static final String FORGOT_PASSWORD = "/forgot-password";
+	public static final String AUTH_LOGIN 	= "/log-in";
+	public static final String AUTH_LOGOUT 	= "/log-out";
+	public static final String AUTH_SIGNUP 	= "/sign-up";
+	public static final String AUTH_FORGOT_PASSWORD = "/forgot-password";
 	
 	// User
 	public static final String USER_PROFILE = "/user/profile";

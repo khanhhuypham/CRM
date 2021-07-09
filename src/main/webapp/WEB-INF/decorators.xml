@@ -5,7 +5,7 @@
 	</decorator>
 	
 	<excludes>
-		<pattern>/login</pattern>
+		<pattern>/log-in</pattern>
 		<pattern>/sign-up</pattern>
 	</excludes>
 

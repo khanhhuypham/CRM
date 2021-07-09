@@ -14,7 +14,7 @@
 	
 	            <!-- Navbar Brand -->
 	            
-	            <a href="<%=request.getContextPath() + UrlUtils.HOME_SERVLET%>" class="navbar-brand">
+	            <a href="<%=request.getContextPath() + UrlUtils.HOME%>" class="navbar-brand">
 	                <img class="navbar-brand-icon" src="<c:url value = "/assets/images/logo.png"/>" height="50" alt="Cybersoft">
 	            </a>
 	
@@ -137,7 +137,7 @@
 	                            Edit account
 	                        </a>
 	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="login.html">Logout</a>
+	                        <a class="dropdown-item" href="<c:url value = "<%=UrlUtils.AUTH_LOGOUT %>"/>">Logout</a>
 	                    </div>
 	                </li>
 	            </ul>
