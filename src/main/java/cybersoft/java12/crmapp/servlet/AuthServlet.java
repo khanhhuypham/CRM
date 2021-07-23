@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +41,7 @@ public class AuthServlet extends HttpServlet{
 			case UrlUtils.AUTH_LOGIN:{
 				Cookie[] cookies = req.getCookies();
 				int numberOfCookie = cookies != null ? cookies.length : 0;
-				for(int i = 0; i < numberOfCookie; i ++) {
+				for(int i = 0; i < numberOfCookie; i++) {
 					if(cookies[i].getName().equals("email")) {
 						System.out.println(cookies[i].getName());
 						req.setAttribute("email", cookies[i].getValue());

@@ -58,9 +58,9 @@ public class UserDao {
 	
 	public void deleteById(int id) throws SQLException {
 		String query = "DELETE FROM user WHERE id = ?;";
-		String query2 = "(SELECT * FROM  crm.user JOIN\r\n"
-				+ "crm.project ON (crm.user.id = crm.project.owner)\r\n"
-				+ "WHERE crm.user.id = 2);";
+//		String query2 = "(SELECT * FROM  crm.user JOIN\r\n"
+//				+ "crm.project ON (crm.user.id = crm.project.owner)\r\n"
+//				+ "WHERE crm.user.id = 2);";
 		Connection connection = MySqlConnection.getConnection();
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
@@ -84,7 +84,7 @@ public class UserDao {
 	
 	public void add(UserCreateDTO dto) throws SQLException {
 		String query = "INSERT INTO user(email, password, name, address, phone, role_id)"
-				+ " + VALUES(?,?,?,?,?,?)";
+				+ " VALUES(?,?,?,?,?,?)";
 		Connection connection = MySqlConnection.getConnection();
 		try {
 			PreparedStatement statement	= connection.prepareStatement(query);
@@ -93,9 +93,8 @@ public class UserDao {
 			statement.setNString(3, dto.getName());
 			statement.setNString(4, dto.getAddress());
 			statement.setNString(5, dto.getPhone());
-			statement.setInt(5, dto.getRoleId());
+			statement.setInt(6, dto.getRoleId());
 			statement.executeUpdate();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -123,7 +122,6 @@ public class UserDao {
 				user.setPassword(resultSet.getString("user.password"));
 				user.setName(resultSet.getString("user.name"));
 				user.setPhone(resultSet.getString("user.phone"));
-				
 				int roleId = resultSet.getInt("user.role_id");
 				Role role = new Role();
 				role.setID(resultSet.getInt("role.id"));
