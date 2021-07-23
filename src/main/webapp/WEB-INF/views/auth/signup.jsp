@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label class="text-label" for="name_2">Name:</label>
                 <div class="input-group input-group-merge">
-                    <input id="name_2" type="text" required="" class="form-control form-control-prepended" placeholder="John Doe">
+                    <input id="name_2" type="text" required="" class="form-control form-control-prepended" placeholder="John Doe" name = "name_2">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="far fa-user"></span>
@@ -57,7 +57,7 @@
             <div class="form-group">
                 <label class="text-label" for="email_2">Email Address:</label>
                 <div class="input-group input-group-merge">
-                    <input id="email_2" type="email" required="" class="form-control form-control-prepended" placeholder="john@doe.com">
+                    <input id="email_2" type="email" required="" class="form-control form-control-prepended" placeholder="john@doe.com" name = "email_2">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="far fa-envelope"></span>
@@ -68,7 +68,7 @@
             <div class="form-group">
                 <label class="text-label" for="password_2">Password:</label>
                 <div class="input-group input-group-merge">
-                    <input id="password_2" type="password" required="" class="form-control form-control-prepended" placeholder="Enter your password">
+                    <input id="password_2" type="password" required="" class="form-control form-control-prepended" placeholder="Enter your password" name = "password_2">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="far fa-key"></span>
@@ -78,13 +78,13 @@
             </div>
             <div class="form-group mb-5">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" checked="" class="custom-control-input" id="terms" />
+                    <input type="checkbox" checked="" class="custom-control-input" id="terms" name = "terms"/>
                     <label class="custom-control-label" for="terms">I accept <a href="#">Terms and Conditions</a></label>
                 </div>
             </div>
             <div class="form-group text-center">
                 <button class="btn btn-primary mb-2" type="submit">Create Account</button><br>
-                <a class="text-body text-underline" href="<c:url value="<%=UrlUtils.AUTH_LOGIN %>" />">Have an account? Login</a>
+                <a class="text-body text-underline" href="<c:url value="<%=UrlUtils.AUTH_LOGIN %>"/>">Have an account? Login</a>
             </div>
         </form>
     </div>

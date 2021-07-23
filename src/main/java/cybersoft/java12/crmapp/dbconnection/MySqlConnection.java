@@ -13,15 +13,16 @@ public class MySqlConnection {
 	public static Connection getConnection(){
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection(url, userName, password);
-			System.out.print("Connect successfully");
+			if(connection == null || connection.isClosed()) {
+				System.out.println("Connect successfully");
+				connection = DriverManager.getConnection(url, userName, password);
+			}
 			return connection;
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver could not found.");
 		} catch (SQLException e) {
 			System.out.println("Database connection could not establish.");
-			e.printStackTrace();
 		}
-		return connection;
+		return null;
 	}	
 }

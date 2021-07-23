@@ -2,6 +2,7 @@ package cybersoft.java12.crmapp.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import cybersoft.java12.crmapp.dbconnection.MySqlConnection;
+import cybersoft.java12.crmapp.service.AuthService;
 import cybersoft.java12.crmapp.util.JspUtils;
 import cybersoft.java12.crmapp.util.ServletUtils;
 import cybersoft.java12.crmapp.util.UrlUtils;
@@ -27,6 +29,12 @@ import cybersoft.java12.crmapp.util.UrlUtils;
 		UrlUtils.AUTH_FORGOT_PASSWORD
 })
 public class AuthServlet extends HttpServlet{
+	private AuthService service;
+	
+	@Override
+	public void init() throws ServletException {
+		service = new AuthService();
+	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -59,6 +67,10 @@ public class AuthServlet extends HttpServlet{
 				break;
 			}
 			
+			case UrlUtils.AUTH_SIGNUP:{
+				req.getRequestDispatcher(JspUtils.AUTH_SIGNUP).forward(req, resp);
+			}
+					
 			default: {throw new IllegalArgumentException("Unexpected value: " + req.getServletPath());}
 		}
 		
@@ -71,24 +83,23 @@ public class AuthServlet extends HttpServlet{
 				String email = req.getParameter("email");
 				String password = req.getParameter("password");
 				String rememberMe = req.getParameter("rememberUserName");
-//				if(rememberMe != null){
-//					Cookie cookie = new Cookie("email", email);
-//					cookie.setMaxAge(60*60*24*30);
-//					resp.addCookie(cookie);
-//				}
+				boolean isLogin = true;
 				System.out.printf("Email: %s, Remember: %s\n", email, rememberMe);
-					
-				//logic dang nhap
+				// session demo
+				HttpSession currentSession = req.getSession();
+				String pingo = (String)currentSession.getAttribute("pingo");
+				System.out.printf("Pingo: %s\n", pingo);
 				
-				if(logInAuthentication(email, password)) {
-					Cookie cookie = new Cookie("email", email);
-					cookie.setMaxAge(60*60*24*30);
-					resp.addCookie(cookie);
-					
-					HttpSession currentSession = req.getSession();
+				//logic dang nhap
+				if(email == null || password == null) {
+					isLogin = false;
+				}else if(!service.login(email, password)){
+					isLogin = false;
+				}
+				
+				if(isLogin) {
 					currentSession.setAttribute("status", "Logged in successfully");
 					resp.sendRedirect(req.getContextPath() + UrlUtils.HOME);
-					
 				}else {
 					resp.sendRedirect(req.getContextPath() + UrlUtils.AUTH_LOGIN);
 				}
@@ -97,15 +108,49 @@ public class AuthServlet extends HttpServlet{
 			
 			case UrlUtils.AUTH_LOGOUT: {break;}
 			
+			case UrlUtils.AUTH_SIGNUP:{
+				String userName = req.getParameter("name_2");
+				String email = req.getParameter("email_2");
+				String password = req.getParameter("password_2");
+				String terms = req.getParameter("terms");
+				System.out.println(userName + " " + email + " " + password + " " + terms);
+				if(terms !=null) {
+					insertIntoDataBase(userName, email, password);
+					resp.sendRedirect(req.getContextPath() + UrlUtils.AUTH_LOGIN);
+					System.out.println("Sign up successfully");		
+				}else{
+					resp.sendRedirect(req.getContextPath() + UrlUtils.AUTH_SIGNUP);
+				}
+				
+				break;
+			}
+			
 			default: throw new IllegalArgumentException("Unexpected value: " + req.getServletPath());
 		}
 	}
 	
+	
+	public static void insertIntoDataBase(String userName, String email, String password) {
+		try {
+			Connection connection = MySqlConnection.getConnection();
+			String query = "INSERT INTO crm.user (`name`, `email`,`password`) VALUES (?,?,?)";
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, userName);
+			statement.setString(2, email);
+			statement.setString(3, password);
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static boolean logInAuthentication(String email, String password) {
 		Connection connection = MySqlConnection.getConnection();
-		Statement statement;
 		try {
-			statement = connection.createStatement();
+			Statement statement  = connection.createStatement();
 			String query = "SELECT email, password FROM crm.user";
 			ResultSet resultSet= statement.executeQuery(query);
 			while(resultSet.next()) {

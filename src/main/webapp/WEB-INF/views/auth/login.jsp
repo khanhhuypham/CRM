@@ -71,7 +71,7 @@
             </div>
             <div class="form-group text-center">
                 <button class="btn btn-primary mb-5" type="submit">Login</button><br>
-                <a href="<c:url value="<%=UrlUtils.AUTH_FORGOT_PASSWORD %>" />" >Forgot password?</a> <br> Don't have an account? <a class="text-body text-underline" href="<c:url value="<%=UrlUtils.AUTH_SIGNUP %>" />">Sign up!</a>
+                <a href="<c:url value="<%=UrlUtils.AUTH_FORGOT_PASSWORD %>" />" >Forgot password?</a> <br> Don't have an account? <a class="text-body text-underline" href="<c:url value="<%=UrlUtils.AUTH_SIGNUP%>" />">Sign up!</a>
             </div>
         </form>
     </div>
