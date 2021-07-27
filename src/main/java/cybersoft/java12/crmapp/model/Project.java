@@ -1,21 +1,19 @@
 package cybersoft.java12.crmapp.model;
 
 import java.util.Date;
-
 public class Project {
 	private int id;
 	private String name;
 	private String description;
-	private Date startDate;
-	private Date endDate;
-	private User owner;
-	
-	public Project() {}
+	private String start_date;
+	private String end_date;
+	private int owner;
 
-	public int getID() {
+	public int getId() {
 		return id;
 	}
-	public void setID(int id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -35,29 +33,27 @@ public class Project {
 		this.description = description;
 	}
 
-	public Date getStarDate() {
-		return startDate;
+	public String getStart_date() {
+		return start_date;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public String getEnd_date() {
+		return end_date;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
 	}
 
-	public User getOwner() {
+	public int getOwner() {
 		return owner;
 	}
 
-	public void setOwner(User owner) {
+	public void setOwner(int owner) {
 		this.owner = owner;
 	}
-
-		
 }

@@ -33,7 +33,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Task</a>
+                        <a class="nav-link" href="<c:url value = "<%=UrlUtils.TASK_DASHBOARD %>"/>">Task</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">

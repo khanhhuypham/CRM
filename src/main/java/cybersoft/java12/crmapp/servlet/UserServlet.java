@@ -84,7 +84,6 @@ public class UserServlet extends HttpServlet {
 	private void getUserDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
 		
-		System.out.println("Servlet: " + id);
 		service.deleteById(id);
 		resp.sendRedirect(req.getContextPath() + UrlUtils.USER_DASHBOARD);	
 	}

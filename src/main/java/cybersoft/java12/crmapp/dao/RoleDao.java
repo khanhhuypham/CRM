@@ -79,7 +79,7 @@ public class RoleDao {
 	}
 	
 	public void add(RoleDTO roleDTO) throws SQLException {
-		String query = "INSERT INTO role(name, description)"
+		String query = "INSERT INTO role (name, description)"
 				+ " + VALUES(?,?)";
 		Connection connection = MySqlConnection.getConnection();
 		try {
@@ -87,13 +87,29 @@ public class RoleDao {
 			statement.setNString(1, roleDTO.getName());
 			statement.setNString(2, roleDTO.getDescription());
 			statement.executeUpdate();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			connection.close();
 		}
+	}
+	
+	public void deleteById(int id) throws SQLException {
+		String query = "DELETE FROM role WHERE id = ?;";
+		Connection connection = MySqlConnection.getConnection();
+		try {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			System.out.print("Delete role successfully!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			connection.close();
+		}
+		
 	}
 	
 	

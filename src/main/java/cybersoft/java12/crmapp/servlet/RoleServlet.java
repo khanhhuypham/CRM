@@ -30,7 +30,6 @@ public class RoleServlet extends HttpServlet{
 		service = new RoleService();
 	}
 	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String servletPath = req.getServletPath();
@@ -50,8 +49,19 @@ public class RoleServlet extends HttpServlet{
 				break;
 			}
 			
+			case UrlUtils.ROLE_DELETE: {
+				getRoleDelete(req,resp);
+			}
+			
 		}
 	}
+	private void getRoleDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		int id = Integer.parseInt(req.getParameter("id"));
+		service.deleteById(id);
+		resp.sendRedirect(req.getContextPath() + UrlUtils.ROLE_DASHBOARD);
+		
+	}
+
 	private void getRoleAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher(JspUtils.ROLE_ADD).forward(req, resp);	
 	}
@@ -59,10 +69,11 @@ public class RoleServlet extends HttpServlet{
 
 	private void getRoleUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
-		System.out.println(id);
+		System.out.println("update servlet: " +id);
 		RoleDTO roleDTO = null;
 		try {
 			roleDTO = service.findRoleById(id);
+			System.out.println("update servlet: userDTO " + roleDTO.getID());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,6 +103,7 @@ public class RoleServlet extends HttpServlet{
 				break;
 			}
 			case UrlUtils.ROLE_ADD:{
+				System.out.println("ROLE_ADD");
 				postRoleAdd(req,resp);
 				break;
 			}
@@ -104,9 +116,9 @@ public class RoleServlet extends HttpServlet{
 		RoleDTO roleDTO = new RoleDTO();
 		roleDTO.setName(name);
 		roleDTO.setDescription(description);
+		System.out.println("servlet add: " + roleDTO.getName());
 		service.add(roleDTO);
 		resp.sendRedirect(req.getContextPath() + UrlUtils.ROLE_DASHBOARD);
-		
 	}
 
 

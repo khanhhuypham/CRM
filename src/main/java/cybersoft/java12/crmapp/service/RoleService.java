@@ -47,6 +47,7 @@ public class RoleService {
 	
 	public void add(RoleDTO roleDTO) {
 		try {
+			System.out.println("roleService: " + roleDTO.getName());
 			dao.add(roleDTO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -54,5 +55,15 @@ public class RoleService {
 		}
 		
 	}
+	public void deleteById(int id) {
+		try {
+			dao.deleteById(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 }

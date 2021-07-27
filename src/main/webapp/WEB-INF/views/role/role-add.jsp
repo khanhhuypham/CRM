@@ -44,14 +44,6 @@
                             <label for="description">Description: </label>
                             <textarea type="text" class="form-control" id="description" name = "description" aria-label="With textarea" value = "${roleDTO.getDescription()}"></textarea>
                         </div>
-                        <div class="form-group">
-                                <label for="role">Role</label>
-                                <select id="role" name = "role" data-toggle="select" class="form-control">
-                                    <option selected="" value="1">ADMIN</option>
-                                    <option value="2">LEADER</option>
-                                    <option value="3">STAFF</option>
-                                </select>
-                            </div>
                         <button type="submit" class="btn w-25 text-center btn-primary">Add</button>
                     </form>
                 </div>

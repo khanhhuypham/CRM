@@ -1,5 +1,4 @@
 CREATE DATABASE IF NOT EXISTS crm;
-
 USE crm;
 
 CREATE TABLE IF NOT EXISTS role (
@@ -78,7 +77,7 @@ ALTER TABLE task
 		FOREIGN KEY (project_id) REFERENCES project(id),
 	ADD CONSTRAINT FK_TASK_STATUS
 		FOREIGN KEY (status_id) REFERENCES status(id);
-        
+
 INSERT INTO role(id,name,description)
 VALUES
 ('1','ADMIN','Quản Lý dự án'),
